@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build & Test
+name: github-pipelines
 
 # Controls when the action will run. 
 on:
@@ -33,3 +33,18 @@ jobs:
       run: npm run build -- --prod
     - name: Test
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      
+  codacy-analysis-cli:
+    name: Codacy Analysis CLI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Run Codacy Analysis CLI
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          tool: <CLIENT_SIDE_TOOL_NAME>
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          upload: true
+  
