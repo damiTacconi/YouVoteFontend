@@ -33,7 +33,7 @@ jobs:
       run: npm run build -- --prod
     - name: Test
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-      
+
   codacy-analysis-cli:
     name: Codacy Analysis CLI
     runs-on: ubuntu-latest
@@ -46,5 +46,6 @@ jobs:
         with:
           tool: <CLIENT_SIDE_TOOL_NAME>
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          gh-code-scanning-compat: true
           upload: true
   
