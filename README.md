@@ -1,5 +1,7 @@
 # YouVote
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ffc0220eb938419499c44c05beb4fae3)](https://app.codacy.com/gh/damiTacconi/YouVoteFontend?utm_source=github.com&utm_medium=referral&utm_content=damiTacconi/YouVoteFontend&utm_campaign=Badge_Grade_Settings)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
 ## Development server
