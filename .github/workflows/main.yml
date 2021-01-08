@@ -32,6 +32,6 @@ jobs:
     - name: Build
       run: npm run build -- --prod
     - name: Test
-      run: npm test
+      run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
     - name: E2E
       run: npm run e2e
