@@ -35,13 +35,14 @@ jobs:
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
   sonarcloud:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
-    - name: SonarCloud Scan
+    - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
