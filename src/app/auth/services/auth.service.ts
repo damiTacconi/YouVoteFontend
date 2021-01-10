@@ -12,7 +12,7 @@ export class AuthService {
   constructor() { }
 
   isLogged(): boolean { 
-    return localStorage.getItem(this.AUTH_TOKEN) !== null;
+    return localStorage.getItem(this.AUTH_TOKEN) != null;
   }
 
 }
