@@ -35,7 +35,7 @@ jobs:
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
   coverage:
-    needs: [ test ]
+    needs: [ build ]
     name: coverage
     runs-on: ubuntu-latest
     steps:
