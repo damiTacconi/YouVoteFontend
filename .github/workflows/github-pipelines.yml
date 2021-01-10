@@ -34,18 +34,16 @@ jobs:
     - name: Test
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
-  codacy-analysis-cli:
-    name: Codacy Analysis CLI
+  sonarcloud:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-
-      - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@master
-        with:
-          tool: <CLIENT_SIDE_TOOL_NAME>
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          gh-code-scanning-compat: true
-          upload: true
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: Analyze with SonarCloud
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   
