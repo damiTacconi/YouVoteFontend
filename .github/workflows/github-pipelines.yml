@@ -35,15 +35,11 @@ jobs:
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
   codeclimate:
-    needs: [ build ]
-    name: codeclimate
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      with:
-        node-version: 12.8
-    - uses: paambaati/codeclimate-action@v2.5.7
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    - name: Test & publish code coverage
+    uses: paambaati/codeclimate-action@v2.7.5
+    env:
+      CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+    with:
+      coverageCommand: npm run coverage
+      debug: true
   
