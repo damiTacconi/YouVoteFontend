@@ -34,16 +34,21 @@ jobs:
     - name: Test
       run: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
-  sonarcloud:
+  coverage:
+    needs: [ build ]
+    name: coverage
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
       with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-    - name: Analyze with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
+        node-version: '12'
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - uses: paambaati/codeclimate-action@v2.5.7
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        CC_TEST_REPORTER_ID: {{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: yarn coverage
   
