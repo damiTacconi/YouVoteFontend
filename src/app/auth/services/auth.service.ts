@@ -7,14 +7,13 @@ import { FormsModule } from '@angular/forms';
 export class AuthService {
 
   public  redirectUrl: string =  '';
-  private readonly vari = 'a';
   
   private readonly AUTH_TOKEN: string = 'token';
 
   constructor() { }
 
   isLogged(): boolean { 
-    return localStorage.getItem(this.AUTH_TOKEN) != null;
+    return localStorage.getItem(this.AUTH_TOKEN) !== null;
   }
 
 }
